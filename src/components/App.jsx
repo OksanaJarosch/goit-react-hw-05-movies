@@ -1,24 +1,32 @@
-import { GlobalStyle } from "GlobalStyle";
-import { Routes, Route } from "react-router-dom";
+import HomePage from "pages/HomePage";
+import MovieDetailsPage from "pages/MovieDetailsPage";
+import MoviesPage from "pages/MoviesPage";
+import { Routes, Route} from "react-router-dom";
+import { Layout } from "./Layout/Layout";
+import NotFoundPage from "pages/NotFoundPage";
+import { Reviews } from "./Reviews/Reviews";
+import { Cast } from "./Cast/Cast";
 
 
 export const App = () => {
 
-
-
-
   return (
-    <div>
+    <>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/movies/:movieId" element={<MovieDetails />}>
-          <Route path="cast" element={<Cast />} />
-          <Route path="reviews" element={<Reviews />} />
-        </Route>
-      </Routes>
+        <Route path="/" element={<Layout />}>
 
-    <GlobalStyle />
-    </div>
+          <Route index element={<HomePage />} />
+          <Route path="movies" element={<MoviesPage />} />
+          <Route path="movies/:movieId" element={<MovieDetailsPage />}>
+
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+
+          </Route>
+        </Route>
+
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </>
   );
 };
