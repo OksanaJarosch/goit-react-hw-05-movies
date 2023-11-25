@@ -5,6 +5,7 @@ padding: 30px;
 display: flex;
 gap: 20px;
 border-bottom: solid #a2a2a2 1px;
+border-top: solid #a2a2a2 1px;
 `;
 
 export const StyledName = styled.h1`
@@ -22,4 +23,8 @@ color: #424242;
 
 export const StyledText = styled.p`
 margin-bottom: 16px;
+`;
+
+export const StyledSecondaryText = styled.p`
+margin: 20px;
 `;

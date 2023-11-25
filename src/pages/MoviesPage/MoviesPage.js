@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { searchMovies } from "services/api";
+import { MovieContainer, StyledForm, StyledItem, StyledLink, StyledList } from "./MoviesPage.styled";
+import { MdOutlineArrowForwardIos } from "react-icons/md";
 
 
 export default function MoviesPage() {
@@ -50,32 +52,32 @@ export default function MoviesPage() {
     } 
     
     return (
-        <>
-            <form onSubmit={onSearch}>
+        <MovieContainer>
+            <StyledForm onSubmit={onSearch}>
                 <input
                     type="text" autoComplete="off" placeholder="Search movie"
                     name="movie"
                 >
                 </input>
                 <button>Search</button>
-            </form>
+            </StyledForm>
 
             {error && <p>Oops, something went wrong.</p>}
             {isLoading && <p>Loading...</p>}
 
             {movies.length > 0 && !isLoading &&(
-            <ul>
+            <StyledList>
                 {movies.map(
                     movie => {
                         const { id, original_title } = movie;
                         return (
-                        <li key={id}>
-                                <Link to={`movies/${id}`}>{original_title}</Link>
-                        </li>)
+                        <StyledItem key={id}><MdOutlineArrowForwardIos/> 
+                                <StyledLink to={`${id}`}>{original_title}</StyledLink>
+                        </StyledItem>)
                     }
                 )}
-            </ul>
+            </StyledList>
             )}
 
-        </>
+        </MovieContainer>
     )}

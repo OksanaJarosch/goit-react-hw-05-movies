@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { getDetails } from "services/api";
-import { DetailsContainer, StyledGenres, StyledName, StyledOverview, StyledText } from "./MovieDetails.styled";
+import { DetailsContainer, StyledGenres, StyledName, StyledOverview, StyledSecondaryText, StyledText } from "./MovieDetails.styled";
+import { IoIosArrowBack } from "react-icons/io";
+
 
 export const MovieDetails = () => {
 
@@ -39,8 +41,10 @@ export const MovieDetails = () => {
 
     return (
         <>
-            {error && <p>Oops, something went wrong.</p>}
-            {isLoading && <p>Loading...</p>}
+            {error && <StyledSecondaryText>Oops, something went wrong.</StyledSecondaryText>}
+            {isLoading && <StyledSecondaryText>Loading...</StyledSecondaryText>}
+
+            <StyledSecondaryText><IoIosArrowBack/> Go back</StyledSecondaryText>
 
             {movie && (
                 <DetailsContainer>
