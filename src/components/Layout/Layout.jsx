@@ -1,6 +1,6 @@
 import { GlobalStyle } from "GlobalStyle"
 import { Outlet } from "react-router-dom"
-import { LayoutContainer, StyledHeader, StyledList, StyledNavLink } from "./Layout.styled"
+import { StyledHeader, StyledList, StyledNavLink } from "./Layout.styled"
 
 export const Layout = () => {
     return(
@@ -18,9 +18,9 @@ export const Layout = () => {
         </nav>
         </StyledHeader>
         
-        <LayoutContainer>
+        <div>
             <Outlet />
-        </LayoutContainer>
+        </div>
 
     <GlobalStyle />
     </>

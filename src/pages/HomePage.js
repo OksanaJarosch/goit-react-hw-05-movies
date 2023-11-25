@@ -13,7 +13,6 @@ export default function HomePage() {
             setIsLoading(true)
             try {
                 const { results } = await getTrendingMovies()
-                console.log(results);
                 setMovies(prev => [...prev, ...results])
             } catch (error) {
                 setError(error)
