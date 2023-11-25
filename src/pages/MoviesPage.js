@@ -7,19 +7,12 @@ export default function MoviesPage() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [movies, setMovies] = useState([]);
-    // const [page, setPage] = useState(1);
 
     const [params, setParams] = useSearchParams()
     const searchedMovie = params.get("movie") ?? "";
 
     useEffect(() => {
-        console.log("i am useEffect");
-
-        fetchMovie()
-
-    }, [searchedMovie])
-    
-      const fetchMovie = async () => {
+        const fetchMovie = async () => {
         setIsLoading(true)
           try {
             if (!searchedMovie) {
@@ -39,8 +32,14 @@ export default function MoviesPage() {
             setIsLoading(false)
         }
       };
+
+        fetchMovie()
+
+    }, [searchedMovie])
     
-    const onSearch = async (evt) => {
+
+    
+    const onSearch = (evt) => {
         evt.preventDefault()
         
         const { value } = evt.target.elements.movie; 
@@ -48,8 +47,6 @@ export default function MoviesPage() {
         if (value) {
         setParams({movie: value})
         }
-        await fetchMovie()
-        console.log(searchedMovie);
     } 
     
     return (
