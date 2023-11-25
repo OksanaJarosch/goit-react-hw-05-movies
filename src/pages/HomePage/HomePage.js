@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom";
 import { getTrendingMovies } from "services/api";
+import { HomeContainer, StyledItem, StyledLink, StyledList, StyledTitle } from "./HomePage.styled";
+import { MdOutlineArrowForwardIos } from "react-icons/md";
 
 export default function HomePage() {
 
@@ -25,26 +26,26 @@ export default function HomePage() {
 
 
     return (
-        <div>
-            <h1>Trending today</h1>
+        <HomeContainer>
+            <StyledTitle>Trending today</StyledTitle>
 
             {error && <p>Oops, something went wrong.</p>}
             {isLoading && <p>Loading...</p>}
 
-            <ul>
+            <StyledList>
                 {movies.length > 0 && (
                     movies.map(
                         (movie, index) => {
                             const { id, original_title } = movie;
 
                             return (
-                                <li key={index}>
-                                    <Link to={`movies/${id}`}>{original_title}</Link>
-                                </li>)
+                                <StyledItem key={index}><MdOutlineArrowForwardIos/> 
+                                    <StyledLink to={`movies/${id}`}>{original_title}</StyledLink>
+                                </StyledItem>)
                         }
                     )
                 )}
-            </ul>
-        </div>
+            </StyledList>
+        </HomeContainer>
     )
 }
