@@ -18,7 +18,6 @@ export const Cast = () => {
             setIsLoading(true)
             try {
                 const { cast } = await getActors(movieId)
-                console.log(cast);
                 setCast([ ...cast ])
             } catch (error) {
                 setError(error)
