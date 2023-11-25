@@ -26,7 +26,7 @@ export const MovieDetails = () => {
             }
         }
         fetchDetails()
-    }, []);
+    }, [movieId]);
     
     const getAverage = () => {
         const { vote_average } = movie;

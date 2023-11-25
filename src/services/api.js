@@ -20,7 +20,7 @@ export async function getDetails(movieId) {
 };
 
 export async function getActors(movieId) {
-    const response = await axios(`/search/movie/${movieId}/credits?api_key=${API_KEY}`);
+    const response = await axios(`/movie/${movieId}/credits?api_key=${API_KEY}`);
     return response.data;
 };
 
