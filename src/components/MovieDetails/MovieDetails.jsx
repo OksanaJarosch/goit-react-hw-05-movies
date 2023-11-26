@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { getDetails } from "services/api";
-import { DetailsContainer, StyledGenres, StyledName, StyledOverview, StyledSecondaryText, StyledText } from "./MovieDetails.styled";
-import { IoIosArrowBack } from "react-icons/io";
+import { DetailsContainer, StyledGenres, StyledName, StyledOverview, StyledPhoto, StyledSecondaryText, StyledText } from "./MovieDetails.styled";
 
 
 export const MovieDetails = () => {
@@ -44,12 +43,11 @@ export const MovieDetails = () => {
             {error && <StyledSecondaryText>Oops, something went wrong.</StyledSecondaryText>}
             {isLoading && <StyledSecondaryText>Loading...</StyledSecondaryText>}
 
-            <StyledSecondaryText><IoIosArrowBack/> Go back</StyledSecondaryText>
 
             {movie && (
                 <DetailsContainer>
-                <img src={makeImgURL()
-} alt={movie.title}></img>
+                <StyledPhoto src={makeImgURL()
+} alt={movie.title}></StyledPhoto>
                 <div>
                     <StyledName>{movie.title}</StyledName>
                         <StyledText>User score: {getAverage()}%</StyledText>

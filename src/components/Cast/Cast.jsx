@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getActors } from "services/api";
 import { MdOutlineNoPhotography } from "react-icons/md";
-import { CastList, StyledItem, StyledSecondaryText } from "./Cast.styled";
+import { CastList, InfoContainer, StyledCharacter, StyledItem, StyledSecondaryText } from "./Cast.styled";
 
 
 export const Cast = () => {
@@ -42,10 +42,11 @@ export const Cast = () => {
                         const photo = BASE_URL + profile_path;
                         return (
                             <StyledItem key={name}>
-                                {profile_path ? (<img src={photo} alt={name} />) : ( <MdOutlineNoPhotography style={{ width: '100px',height: "100px", color: '#80808059' }}/>)}
-                                
+                                {profile_path ? (<img src={photo} alt={name} />) : ( <MdOutlineNoPhotography style={{ width: '150px',height: "150px", color: '#8080803b' }}/>)}
+                                <InfoContainer>
                                 <p>{name}</p>
-                                <p>Character: {character}</p>
+                                    <StyledCharacter>Character: {character}</StyledCharacter>
+                                </InfoContainer>
                             </StyledItem>)
                     })}
                 </CastList>

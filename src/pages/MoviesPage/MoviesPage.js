@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { searchMovies } from "services/api";
-import { MovieContainer, StyledForm, StyledItem, StyledLink, StyledList } from "./MoviesPage.styled";
-import { MdOutlineArrowForwardIos } from "react-icons/md";
+import { InfoContainer, MovieContainer, StyledForm, StyledItem, StyledLink, StyledList } from "./MoviesPage.styled";
+import { MdOutlineNoPhotography } from "react-icons/md";
 
 
 export default function MoviesPage() {
@@ -39,6 +39,7 @@ export default function MoviesPage() {
 
     }, [searchedMovie])
     
+    const location = useLocation();
 
     
     const onSearch = (evt) => {
@@ -67,14 +68,25 @@ export default function MoviesPage() {
 
             {movies.length > 0 && !isLoading &&(
             <StyledList>
-                {movies.map(
-                    movie => {
-                        const { id, original_title } = movie;
-                        return (
-                        <StyledItem key={id}><MdOutlineArrowForwardIos/> 
-                                <StyledLink to={`${id}`}>{original_title}</StyledLink>
-                        </StyledItem>)
-                    }
+                {movies.length > 0 && (
+                    movies.map(
+                        (movie, index) => {
+                            const { id, original_title, poster_path
+                            } = movie;
+                            const BASE_URL = "https://image.tmdb.org/t/p/w200";
+                        const photo = BASE_URL + poster_path;
+
+                            return (
+                                <StyledItem key={index}>
+                                     <StyledLink to={`${id}`} state={{from: location}}>
+                                    {poster_path ? (<img src={photo} alt={original_title} />) : (<MdOutlineNoPhotography style={{ width: '200px', height: "200px", color: '#8080803b' }} />)}
+                                    <InfoContainer>
+                                       {original_title}
+                                        </InfoContainer>
+                                        </StyledLink>
+                                </StyledItem>)
+                        }
+                    )
                 )}
             </StyledList>
             )}
