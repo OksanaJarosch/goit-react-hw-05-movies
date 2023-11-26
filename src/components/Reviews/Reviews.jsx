@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getReviews } from "services/api";
-import { ReviewsList, StyledAuthor, StyledItem, StyledSecondaryText } from "./Reviews.styled";
+import { ReviewsList, StyledAuthor, StyledItem } from "./Reviews.styled";
+import { Container, StyledSecondaryText } from "GlobalStyle.styled";
 
 export const Reviews = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -15,7 +16,6 @@ export const Reviews = () => {
             setIsLoading(true)
             try {
                 const {results} = await getReviews(movieId)
-                console.log(results);
                 setReviews([...results])
             } catch (error) {
                 setError(error)
@@ -31,7 +31,8 @@ export const Reviews = () => {
             {error && <StyledSecondaryText>Oops, something went wrong.</StyledSecondaryText>}
             {isLoading && <StyledSecondaryText>Loading...</StyledSecondaryText>}
 
-            {reviews.length > 0 ? (
+            {reviews.length > 0 && (
+                <Container>
                 <ReviewsList>
                     {reviews.map(review => {
                         const { author, content } = review;
@@ -43,9 +44,10 @@ export const Reviews = () => {
                         )
                     }
                     )}
-                </ReviewsList>
-            ) : (<StyledSecondaryText>We don't have any reviews for this movie yet.</StyledSecondaryText>)
-            }
+                    </ReviewsList>
+                    </Container>
+            )}
+            {reviews.length === 0 && !isLoading &&(<StyledSecondaryText>We don't have any reviews for this movie yet.</StyledSecondaryText>)}
         </>
     )
 }

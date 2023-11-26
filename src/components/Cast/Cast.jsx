@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getActors } from "services/api";
 import { MdOutlineNoPhotography } from "react-icons/md";
-import { CastList, InfoContainer, StyledCharacter, StyledItem, StyledSecondaryText } from "./Cast.styled";
+import { CastList, InfoContainer, StyledCharacter, StyledItem } from "./Cast.styled";
+import { Container, StyledSecondaryText } from "GlobalStyle.styled";
 
 
 export const Cast = () => {
@@ -35,6 +36,7 @@ export const Cast = () => {
             {isLoading && <StyledSecondaryText>Loading...</StyledSecondaryText>}
 
             {cast.length > 0 && (
+                <Container>
                 <CastList>
                     {cast.map(actor => {
                         const { profile_path, name, character } = actor;
@@ -49,7 +51,8 @@ export const Cast = () => {
                                 </InfoContainer>
                             </StyledItem>)
                     })}
-                </CastList>
+                    </CastList>
+                    </Container>
             )}
         </>
     )

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
 import { getTrendingMovies } from "services/api";
-import { HomeContainer, InfoContainer, StyledItem, StyledLink, StyledList, StyledTitle } from "./HomePage.styled";
+import { InfoContainer, StyledItem, StyledLink, StyledList, StyledTitle } from "./HomePage.styled";
 import { MdOutlineNoPhotography } from "react-icons/md";
 import { useLocation } from "react-router-dom";
+import { Container, StyledSecondaryText } from "GlobalStyle.styled";
 
 export default function HomePage() {
 
@@ -15,7 +16,6 @@ export default function HomePage() {
             setIsLoading(true)
             try {
                 const { results } = await getTrendingMovies()
-                console.log(results);
                 setMovies(prev => [...prev, ...results])
             } catch (error) {
                 setError(error)
@@ -29,11 +29,11 @@ export default function HomePage() {
     const location = useLocation();
 
     return (
-        <HomeContainer>
+        <Container>
             <StyledTitle>Trending today</StyledTitle>
 
-            {error && <p>Oops, something went wrong.</p>}
-            {isLoading && <p>Loading...</p>}
+            {error && <StyledSecondaryText>Oops, something went wrong.</StyledSecondaryText>}
+            {isLoading && <StyledSecondaryText>Loading...</StyledSecondaryText>}
 
             <StyledList>
                 {movies.length > 0 && (
@@ -46,10 +46,10 @@ export default function HomePage() {
 
                             return (
                                 <StyledItem key={index}>
-                                     <StyledLink to={`movies/${id}`} state={{from: location}}>
+                                    <StyledLink to={`movies/${id}`} state={{from: location}}>
                                     {poster_path ? (<img src={photo} alt={original_title} />) : (<MdOutlineNoPhotography style={{ width: '200px', height: "200px", color: '#8080803b' }} />)}
                                     <InfoContainer>
-                                       {original_title}
+                                    {original_title}
                                         </InfoContainer>
                                         </StyledLink>
                                 </StyledItem>)
@@ -57,6 +57,6 @@ export default function HomePage() {
                     )
                 )}
             </StyledList>
-        </HomeContainer>
+        </Container>
     )
 }

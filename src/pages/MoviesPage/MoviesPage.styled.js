@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 
-export const MovieContainer = styled.div`
-padding: 30px;
-`;
 
 export const StyledForm = styled.form`
-margin-bottom: 24px;
+margin: 40px 0;
+text-align: center;
+position: relative;
 `;
 
 export const StyledList = styled.ul`
@@ -31,4 +30,26 @@ color: black;
 
 export const InfoContainer = styled.div`
 padding: 8px;
+`;
+
+export const StyledInput = styled.input`
+width: 300px;
+font-size: 14px;
+padding: 5px 12px;
+line-height: 20px;
+color: #24292e;
+vertical-align: middle;
+background-color: #ffffff;
+background-repeat: no-repeat;
+background-position: right 8px center;
+border: 1px solid #a2a2a2;
+border-radius: 6px;
+outline: none;
+box-shadow: rgba(225, 228, 232, 0.2) 0px 1px 0px 0px inset;
+
+&:focus{
+    border-color: #0366d6;
+    outline: none;
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+}
 `;

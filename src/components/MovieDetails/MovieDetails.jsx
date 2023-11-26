@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { getDetails } from "services/api";
-import { DetailsContainer, StyledGenres, StyledName, StyledOverview, StyledPhoto, StyledSecondaryText, StyledText } from "./MovieDetails.styled";
+import { DetailsContainer, StyledName, StyledPhoto, StyledSecondaryTitel, StyledText } from "./MovieDetails.styled";
+import { StyledSecondaryText, Container } from "GlobalStyle.styled";
 
 
 export const MovieDetails = () => {
@@ -45,18 +46,20 @@ export const MovieDetails = () => {
 
 
             {movie && (
+                <Container>
                 <DetailsContainer>
                 <StyledPhoto src={makeImgURL()
 } alt={movie.title}></StyledPhoto>
                 <div>
                     <StyledName>{movie.title}</StyledName>
                         <StyledText>User score: {getAverage()}%</StyledText>
-                    <StyledOverview>Overview</StyledOverview>
+                    <StyledSecondaryTitel>Overview</StyledSecondaryTitel>
                         <StyledText>{ movie.overview}</StyledText>
-                    <StyledGenres>Genres</StyledGenres>
+                    <StyledSecondaryTitel>Genres</StyledSecondaryTitel>
                     {movie.genres.map(({name}, index) => <span key={index}>{name} </span>)}
                 </div>
-            </DetailsContainer> 
+                    </DetailsContainer> 
+                    </Container>
 
             )}</>
     )

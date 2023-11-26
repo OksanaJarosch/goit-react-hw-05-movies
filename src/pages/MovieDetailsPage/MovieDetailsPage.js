@@ -1,8 +1,9 @@
 import { MovieDetails } from "components/MovieDetails/MovieDetails";
 import { Outlet, useLocation } from "react-router-dom"
-import { Container, StyledBackLink, StyledLink, StyledList, StyledText } from "./MovieDetailsPage.styled";
+import { StyledBackLink, StyledLink, StyledList, StyledText } from "./MovieDetailsPage.styled";
 import { IoIosArrowBack } from "react-icons/io";
 import { useRef } from "react";
+import { Container } from "GlobalStyle.styled";
 
 export default function MovieDetailsPage() {
 

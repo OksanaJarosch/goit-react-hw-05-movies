@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 
-export const HomeContainer = styled.div`
-padding: 30px;
-`;
 
 export const StyledTitle = styled.h1`
 margin-bottom: 24px;

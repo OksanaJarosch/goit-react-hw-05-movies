@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { searchMovies } from "services/api";
-import { InfoContainer, MovieContainer, StyledForm, StyledItem, StyledLink, StyledList } from "./MoviesPage.styled";
+import { InfoContainer, StyledForm, StyledInput, StyledItem, StyledLink, StyledList } from "./MoviesPage.styled";
 import { MdOutlineNoPhotography } from "react-icons/md";
+import { Container, StyledSecondaryText } from "GlobalStyle.styled";
 
 
 export default function MoviesPage() {
@@ -16,12 +17,11 @@ export default function MoviesPage() {
     useEffect(() => {
         const fetchMovie = async () => {
         setIsLoading(true)
-          try {
+        try {
             if (!searchedMovie) {
                 return
             }
             const {results} = await searchMovies(searchedMovie)
-            console.log(results);
             if (!results) {
                 return
             }
@@ -32,8 +32,7 @@ export default function MoviesPage() {
             
         } finally {
             setIsLoading(false)
-        }
-      };
+        }};
 
         fetchMovie()
 
@@ -46,25 +45,23 @@ export default function MoviesPage() {
         evt.preventDefault()
         
         const { value } = evt.target.elements.movie; 
-        console.log(value);
         if (value) {
         setParams({movie: value})
         }
     } 
     
     return (
-        <MovieContainer>
+        <Container>
             <StyledForm onSubmit={onSearch}>
-                <input
+                <StyledInput
                     type="text" autoComplete="off" placeholder="Search movie"
                     name="movie"
                 >
-                </input>
-                <button>Search</button>
+                </StyledInput>
             </StyledForm>
 
-            {error && <p>Oops, something went wrong.</p>}
-            {isLoading && <p>Loading...</p>}
+            {error && <StyledSecondaryText>Oops, something went wrong.</StyledSecondaryText>}
+            {isLoading && <StyledSecondaryText>Loading...</StyledSecondaryText>}
 
             {movies.length > 0 && !isLoading &&(
             <StyledList>
@@ -78,10 +75,10 @@ export default function MoviesPage() {
 
                             return (
                                 <StyledItem key={index}>
-                                     <StyledLink to={`${id}`} state={{from: location}}>
+                                    <StyledLink to={`${id}`} state={{from: location}}>
                                     {poster_path ? (<img src={photo} alt={original_title} />) : (<MdOutlineNoPhotography style={{ width: '200px', height: "200px", color: '#8080803b' }} />)}
                                     <InfoContainer>
-                                       {original_title}
+                                    {original_title}
                                         </InfoContainer>
                                         </StyledLink>
                                 </StyledItem>)
@@ -91,5 +88,5 @@ export default function MoviesPage() {
             </StyledList>
             )}
 
-        </MovieContainer>
+        </Container>
     )}
