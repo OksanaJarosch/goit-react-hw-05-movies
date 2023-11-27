@@ -3,6 +3,7 @@ import { Layout } from "./Layout/Layout";
 import { Reviews } from "./Reviews/Reviews";
 import { Cast } from "./Cast/Cast";
 import { Suspense, lazy } from "react";
+import { StyledSecondaryText } from "GlobalStyle.styled";
 
 const HomePage = lazy(() => import("pages/HomePage/HomePage"));
 const MovieDetailsPage = lazy(() => import("pages/MovieDetailsPage/MovieDetailsPage"));
@@ -14,7 +15,7 @@ export const App = () => {
 
   return (
     <>
-      <Suspense>
+      <Suspense fallback={<StyledSecondaryText>LOADING...</StyledSecondaryText>}>
       <Routes>
         <Route path="/" element={<Layout />}>
 
