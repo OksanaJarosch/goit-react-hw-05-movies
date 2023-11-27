@@ -51,7 +51,7 @@ export default function MoviesPage() {
     } 
     
     return (
-        <Container>
+        <>
             <StyledForm onSubmit={onSearch}>
                 <StyledInput
                     type="text" autoComplete="off" placeholder="Search movie"
@@ -63,7 +63,10 @@ export default function MoviesPage() {
             {error && <StyledSecondaryText>Oops, something went wrong.</StyledSecondaryText>}
             {isLoading && <StyledSecondaryText>Loading...</StyledSecondaryText>}
 
-            {movies.length > 0 && !isLoading &&(
+            
+
+            {movies.length > 0 && !isLoading && (
+            <Container>
             <StyledList>
                 {movies.length > 0 && (
                     movies.map(
@@ -74,6 +77,7 @@ export default function MoviesPage() {
                         const photo = BASE_URL + poster_path;
 
                             return (
+                                
                                 <StyledItem key={index}>
                                     <StyledLink to={`${id}`} state={{from: location}}>
                                     {poster_path ? (<img src={photo} alt={original_title} />) : (<MdOutlineNoPhotography style={{ width: '200px', height: "200px", color: '#8080803b' }} />)}
@@ -81,12 +85,15 @@ export default function MoviesPage() {
                                     {original_title}
                                         </InfoContainer>
                                         </StyledLink>
-                                </StyledItem>)
+                                </StyledItem>
+                            )
                         }
                     )
                 )}
-            </StyledList>
+                    </StyledList>
+                    </Container>
             )}
 
-        </Container>
+            {movies.length === 0 && !isLoading && searchedMovie &&<StyledSecondaryText>Movie "{searchedMovie}" not found.</StyledSecondaryText>}
+            </>
     )}

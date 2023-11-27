@@ -3,7 +3,8 @@ import { styled } from "styled-components";
 
 
 export const StyledTitle = styled.h1`
-margin-bottom: 24px;
+margin-bottom: 36px;
+margin-top: 20px;
 color: #424242;
 `;
 

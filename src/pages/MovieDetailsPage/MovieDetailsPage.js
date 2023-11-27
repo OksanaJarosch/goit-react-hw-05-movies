@@ -13,7 +13,7 @@ export default function MovieDetailsPage() {
 
     return (
         <>
-            <StyledBackLink to={backLink.current.state?.from ?? "/movies"}><IoIosArrowBack style={{ width: '14px', height: "14px" }} /> Go back</StyledBackLink>
+            <StyledBackLink to={backLink.current.state?.from ?? "/movies"}><IoIosArrowBack style={{ width: '16px', height: "16px", verticalAlign: 'bottom' }} /> Go back</StyledBackLink>
             
             <MovieDetails />
             
